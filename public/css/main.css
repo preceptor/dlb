@@ -1,0 +1,51 @@
+html{ background: #ecfafd; font-family: verdana; font-size: 80%; margin:0; padding:0 }
+body{ margin:0; padding:0 }
+
+/*----------------------------------- IDs --------------------------------------*/
+
+#hd{ position: relative; background: url(../img/bg/repeat.png) repeat-x; height:184px; }
+
+#search{position:absolute; top:119px; left:305px; width: 474px; }
+#search .word{width:360px; height:20px; background-color:#8ab6d1; border:1px #8ab6d1 solid; padding:2px; color:#FFFFFF; }
+#search .image{float: right;}
+
+#letter{position:absolute; width: 90%; top: 150px; height: 40px; margin-left: 40px; padding: 0; text-align: center;}
+#letter a{color: white; text-decoration: none; font-weight: bold; padding: 0 5px;}
+#letter a:hover{font-size: 24px; padding: 0;}
+#letter .hide{visibility: hidden; font-size: 24px;}
+
+#bd{}
+
+#list{width: 250px;}
+#list div{height: 360px; overflow: auto;}
+#list h3{ background: #1F81C8; margin: 0; padding: 5px; color: white; }
+#list ul{ margin: 5px; padding: 0; }
+#list ul li{ list-style: none; margin-bottom: 3px;}
+#list ul li a{display: block; padding: 3px 0;}
+#list ul li a:hover{background: white;}
+#list ul li a.selected{background: yellow;}
+
+#sense{margin: 0 250px; background: url( ../img/bg/down_light.jpg ) no-repeat 20px 32px white; border: 3px solid #3E9BE1; border-top: none;}
+#sense h2{background: #3E9BE1; color: white; padding: 5px 15px; margin-top: 0;}
+#sense div{padding: 0 10px 10px 10px;}
+
+#social{width: 250px; overflow: hidden;}
+#social h3{background: #1F81C8; margin: 0; padding: 5px; color: white; }
+#social ul{font-size: 11px; list-style: none; margin: 5px; padding: 0;}
+#social li{clear: both; border-top: 1px solid rgb(62, 155, 225); margin-top: 5px; padding-top: 5px;}
+#social li img{float: left; margin: 0 5px 2px 0;}
+
+#ft{ clear: both; background: #1670AE; text-align: center; padding: 5px 0; margin-top: 10px; }
+#ft ul{ margin: 0; }
+#ft ul li{ list-style: none; display: inline; margin-right: 20px; }
+#ft a{ color: white; text-decoration: none; }
+#ft .links a:hover{ text-decoration: underline; }
+/*----------------------------------- Classes ------------------------------------*/
+.inline{ display: inline; }
+.clear{ clear: both; }
+.drag{ cursor: move; }
+.hidden{ visibility: hidden; }
+.padding{ padding: 10px; }
+.margin{ margin: 10px; }
+.left{ float: left; }
+.right{ float: right; }

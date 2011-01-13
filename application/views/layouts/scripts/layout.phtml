@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Dicion&aacute;rio da Lingua Brasileira</title>
+	<meta http-equiv="keywords" content="dicionario portugues brasil brasileira" />
+	<meta http-equiv="description" content="Dicion&aacute;rio de portugu&ecirc;s, feito por brasileiros" />
+    <base href="<?php echo $this->serverURL()?><?php echo $this->baseURL()?>/" />
+	<link rel="stylesheet" href="css/main.css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+	<div id="main">
+		<div id="hd">
+            <img src="img/bg/top.jpg" />
+            <div id="search">
+                <form action="index/index" method="get">
+                    <input type="text" name="q" class="word" value="<?php echo $this->query?>" />
+                    <input type="image" src="img/bt/btn_consultar.jpg" class="image" />
+                </form>
+            </div>
+            <div id="letter">
+                <?php $letters = array('a' , 'b' , 'c' , 'd' , 'e' , 'd' , 'f' , 'g' , 'h' , 'i' , 'j' , 'k' , 'l' , 'm' , 'n' , 'o' , 'p' , 'q' , 'r' , 's' , 't' , 'u' , 'v' , 'w' , 'x' , 'y' , 'z' );?>
+                <?php foreach($letters as $letter):?>
+                    <a href="index/index/q/<?php echo $letter?>"><?php echo strtoupper($letter)?></a>
+                <?php endforeach;?>
+                    <a class="hide" href="#">&nbsp;</a>
+            </div>
+        </div>
+        
+		<div id="bd">
+            <div id="social" class="right">
+                <h3>Na rede social</h3>
+                <ul></ul>
+            </div>
+            <div id="list" class="left">
+				<h3>Palavras</h3>
+                <div>
+                    <ul>
+                        <?php foreach($this->list as $list): ?>
+                            <?php
+                                $class = null;
+                                if ($list->word == $this->query) {
+                                    $class = 'class="selected"';
+                                }
+                                if (Zend_Auth::getInstance()->hasIdentity()) {
+                                    $url = "word/form/id/" . $list->id;
+                                } else {
+                                    $url = "index/index/q/" . $list->word;
+                                }
+                            ?>
+                            <li>
+                                <a <?php echo $class?> href="<?php echo $url?>">
+                                    <?php echo $list->word?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+			</div>
+            <div id="sense">
+                <?php echo $this->layout()->content?>
+            </div>
+		</div>
+		
+		<div id="ft">
+			<ul>
+				<li><a href="#">O QUE &Eacute; O DICION&Aacute;RIO?</a></li>
+				<li><a href="#">SOBRE DIREITOS AUTORAIS</a></li>
+				<li><a href="#">POL&Iacute;TICAS DE PRIVACIDADE</a></li>
+				<li><a href="#">QUER APOIAR OU PATROCINAR</a></li>
+				<li><a href="#">CONTATO</a></li>
+			</ul>
+		</div>
+	</div>
+    <script type="text/javascript">
+        function social(data) {
+            var result = data.results, i = 0, html = '',
+                $social = $('#social ul');
+
+            for (i = 0; i < result.length; i++) {
+                html = '<img width="48" height="48" src="' + result[i].profile_image_url + '"/ >';
+                html += result[i].text;
+                $social.append('<li>'+html+'</li>');
+            }
+        }
+
+        $("#list ul li a.selected").focus();
+    </script>
+    <?php if (isset($this->data->word)):?>
+        <script type="text/javascript" src="http://search.twitter.com/search.json?callback=social&rpp=5&lang=pt&locale=pt_BR&q=<?php echo $this->data->word?>"></script>
+    <?php endif?>
+</body>
+</html>

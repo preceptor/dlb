@@ -1,0 +1,25 @@
+<?php $grammatical_class = null ?>
+<h2><?php echo $this->query?></h2>
+<div>
+<?php if (isset($this->sense) && count($this->sense)):?>
+    <ul>
+        <?php foreach ($this->sense as $key => $sense):?>
+            <?php if($sense->grammatical_class != $grammatical_class):?>
+                <?php if ($key > 0): ?>
+                    </ul>
+                </li>
+                <?php endif;?>
+                <li>
+                    <?php echo Application_Model_Sense::$grammatical[$sense->grammatical_class]?>
+                    <?php $grammatical_class = $sense->grammatical_class ?>
+                    <ul>
+            <?php endif?>
+            <li><?php echo $sense->ds?></li>
+        <?php endforeach;?>
+           </ul>
+        </li>
+    </ul>
+<?php else:?>
+    <p>Palavra não encontrada ou sem definição</p>
+<?php endif?>
+    </div>
